@@ -190,14 +190,12 @@
                             </c:if>
                         </div>
                     </div>
-                    <div class="col-md-5 col-sm-12 film-stats" style="">
-                        <div><b style="font-size: 11pt">编剧:</b> <span
-                                style="font-size: 9pt">${sessionScope.moviedescription.screenwriter}</span></div>
-                        <div><b style="font-size: 11pt">制片国家/地区:</b><span
-                                style="font-size: 9pt"> ${sessionScope.moviedescription.nation}</span></div>
-                        <div><b style="font-size: 11pt">类别:</b><span
+                    <div class="col-md-5 col-sm-12 film-stats"  >
+                        <div><b style="font-size: 10pt">语言:</b> <span
+                                style="font-size: 9pt">英语</span></div>
+                        <div><b style="font-size: 10pt">类别:</b><span
                                 style="font-size: 9pt"> ${sessionScope.moviedescription.typelist}</span></div>
-                        <div><b style="font-size: 11pt">上映日期:</b><span style="font-size: 9pt">
+                        <div><b style="font-size: 10pt">上映日期:</b><span style="font-size: 9pt">
                                         <fmt:formatDate value="${sessionScope.moviedescription.showyear}"
                                                         pattern="yyyy-MM-dd"/>
                                     </span></div>
@@ -268,7 +266,7 @@
                 <script type="text/javascript"
                         src="//s7.addthis.com/js/300/addthis_widget.js#pubid=kinointernational"></script>
                 <!-- Nav tabs 信息切换栏-->
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs" style="margin-left: 5%" role="tablist">
                     <li role="presentation" class="active" style="text-align: center"><a href="#film-info"
                                                                                          aria-controls="film info"
                                                                                          data-toggle="tab"
@@ -335,7 +333,7 @@
                 </style>
 
                 <!-- Tab panes -->
-                <div class="tab-content">
+                <div class="tab-content" style="margin-left: 5%">
                     <!--电影信息 -->
                     <div role="tabpanel" class="tab-pane fade active in" id="film-info">
                         <br>
