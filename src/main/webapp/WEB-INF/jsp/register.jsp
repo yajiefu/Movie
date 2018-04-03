@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html>
 <head>
 
     <meta charset="utf-8">
     <title>register</title>
+    <link rel="SHORTCUT ICON" href="/assets/img/knowU.ico"/>
     <!-- CSS -->
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/login2.css">
+    <link rel="stylesheet" href="/assets/css/regandlogcommon.css">
+    <link rel="stylesheet" href="/assets/css/register.css">
     <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
@@ -14,33 +17,6 @@
     <!--[if lt IE 9]>
     <![endif]-->
 
-    <style type="text/css">
-
-        #mz_Float{position: absolute;z-index: 1000;top: -376px;left:750px;width: 200px;display: block;}
-        #tip{
-            text-align:left
-        }
-        .bRadius2 {border-radius: 2px;outline: left um none;}
-
-        .checkedN{border-color: green}
-        .errorC{ border-color: red}
-
-        .mail{box-shadow: 0 0 15px #141414;width: 210px;border: solid 1px silver;z-index: 10;position:absolute;top:90px;left:300px;display: none;}
-        .mail .item{width:210px;position:relative;right:40px;margin-left:0px;background-color: #fff;color: #515151;cursor: pointer;height: 22px;line-height: 22px;letter-spacing: 1px;font-size: 13px;padding-left: 5px;}/*letter-spacing字符间距*/
-        .mail .item:hover{background-color: #ccc; color: #fff;}
-        .img{
-            width: 153px;
-            height: 200px;
-            border-radius: 10px;
-        }
-        .imgSelected{
-            border:2px solid #0F0;
-        }
-        #tab h6{
-            height: 20px;
-        }
-
-    </style>
 </head>
 
 <body>
@@ -51,7 +27,7 @@
         <div id="d1">
 
             <span  style="color: white" class="glyphicon glyphicon-user"></span>
-            <input type="text" name="username"  id="regName" value="111111" placeholder="用 户 名" required="required" />
+            <input type="text" name="username"  id="regName" placeholder="用 户 名" required="required" />
             <span style="color: red"  class="usernameerror"></span>
 
         </div>
@@ -60,14 +36,14 @@
         <%--邮箱--%>
         <div  id="d2">
             <span style="color: white" class="glyphicon glyphicon-envelope"></span>
-            <input type="email" name="email"  id="email" value="11@qq.com" placeholder="电子邮箱" required="required">
+            <input type="email" name="email"  id="email" placeholder="电子邮箱" required="required">
             <span  style="color: red" class="emailerror"></span>
         </div>
 
         <%--密码--%>
         <div id="d3">
             <span style="color: white" class="glyphicon glyphicon-asterisk"></span>
-            <input type="password" name="password" id="pwd" value="11111111" placeholder="密　码" required="required">
+            <input type="password" name="password" id="pwd" placeholder="密　码" required="required">
             <span   style="color: red" class="pwderror"></span>
 
         </div>
@@ -75,7 +51,7 @@
             <%--确认密码--%>
         <div id="d4">
             <span style="color: white" class="glyphicon glyphicon-asterisk"></span>
-            <input type="password" id="pwdRepeat" value="11111111" placeholder="确 认 密 码" required="required">
+            <input type="password" id="pwdRepeat" placeholder="确 认 密 码" required="required">
             <span   style="color: red" class="pwdRerror"></span>
 
         </div>
@@ -199,9 +175,13 @@
        }
        if(ids!="") {
            $.post("/customer/register/movieSubmit", {'ids': ids}, function (data) {
-               alert("提交成功");
-               $('#myModal').modal('hide');
-               location.href = "/page/login";
+               if(data=="ok") {
+                   alert("提交成功");
+                   $('#myModal').modal('hide');
+                   location.href = "/page/login";
+               }
+               else
+                   alert("请至少选择一部电影");
            })
        }
        else
@@ -267,7 +247,10 @@
         }
         //判断用户名是否被占用
         var surl = "";
-        $.ajax({url:surl + "/customer/check/"+escape($("#regName").val())+"/1?r=" + Math.random(),
+
+        var username = encodeURI(encodeURI($("#regName").val()));
+        console.log(username);
+        $.ajax({url:surl + "/customer/check/"+username+"/1?r=" + Math.random(),
             success : function(data) {
                 if (data.data) {
                 } else {
@@ -455,9 +438,10 @@
             return flag;
         },
         beforeSubmit:function() {
+            var username = encodeURI(encodeURI($("#regName").val()));
             //检查用户和邮箱是否已经被占用
             $.ajax({
-                url : REGISTER.param.surl + "/customer/checkboth/"+escape($("#regName").val())+"/"+escape($("#email").val())+"/4?=" + Math.random(),
+                url : REGISTER.param.surl + "/customer/checkboth/"+username+"/"+escape($("#email").val())+"/4?=" + Math.random(),
                 success : function(data) {
                     if (data.data) {
                         REGISTER.doSubmit();

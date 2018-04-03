@@ -20,12 +20,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void updateUser(Integer userid, String password) {
+    public void updateUser(Integer userid, String password, String email) {
 
         String md5Pass = DigestUtils.md5DigestAsHex(password.getBytes());
         User user = new User();
         user.setUserid(userid);
         user.setPassword(md5Pass);
+        user.setEmail(email);
         userMapper.updateByPrimaryKeySelective(user);
     }
 }

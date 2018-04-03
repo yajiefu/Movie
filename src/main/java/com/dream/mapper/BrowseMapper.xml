@@ -200,6 +200,6 @@
     </if>
   </insert>
   <select id="booluserunlikedmovie"  resultType="java.lang.Integer">
-       select count(*) from browse where exists (select movieids from browse where userid =#{0} AND  movieids like "%,"#{1}"%.");
+        select count(*) from browse where  userid = #{0}   AND  movieids like "%,"#{1}"%.";
   </select>
 </mapper>

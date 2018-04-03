@@ -33,5 +33,5 @@ public interface BrowseMapper {
 
     int insertuserfavourtemovie(Selectquery selectquery);
 
-    int booluserunlikedmovie(int userid,String movieid);
+    int booluserunlikedmovie(int userid, String movieid);
 }

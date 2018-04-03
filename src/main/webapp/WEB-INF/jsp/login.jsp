@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>Login</title>
+    <link rel="SHORTCUT ICON" href="/assets/img/knowU.ico"/>
     <!-- CSS -->
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/login2.css">
+    <link rel="stylesheet" href="/assets/css/regandlogcommon.css">
     <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->

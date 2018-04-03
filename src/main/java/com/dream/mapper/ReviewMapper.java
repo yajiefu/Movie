@@ -20,7 +20,7 @@ public interface ReviewMapper {
 
     Review selectByPrimaryKey(Integer reviewid);
 
-    Review selectByUseridandMovieid(Integer userid,Integer movieid);
+    Review selectByUseridandMovieid(Integer userid, Integer movieid);
 
     int updateByExampleSelective(@Param("record") Review record, @Param("example") ReviewExample example);
 

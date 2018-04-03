@@ -17,7 +17,21 @@ public class RectabServiceImpl implements RectabService {
         RectabExample example = new RectabExample();
         RectabExample.Criteria criteria = example.createCriteria();
         criteria.andUseridEqualTo(userid);
-        List<Rectab> rectabList = rectabMapper.selectByExample(example);
-        return rectabList.get(0);
+        List<Rectab> rectabList=null;
+        rectabList = rectabMapper.selectByExample(example);
+        if(rectabList.size()!=0)
+            return rectabList.get(0);
+        else
+            return null;
+    }
+
+    @Override
+    public int insert(Rectab rectab) {
+        return rectabMapper.insert(rectab);
+    }
+
+    @Override
+    public void update(Rectab rectab) {
+        rectabMapper.update(rectab);
     }
 }
